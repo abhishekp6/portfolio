@@ -13,6 +13,10 @@ Welcome to my developer portfolio! This project showcases my skills, projects, a
 - [Next.js](https://nextjs.org/): A React framework for production.
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapid UI development.
 
+## Lighthouse Score
+
+<img src="./public/lighthouse.png" width="720px">
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
