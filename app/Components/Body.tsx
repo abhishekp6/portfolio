@@ -2,6 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Body = () => {
+
+    const checkpoints = [
+                            {'id': 1, 'title': 'Software Engineer at Lumiq (July 2021 - Present)',
+                                'description': ['Part of applications team responsible for building full stack applications end to end.',
+                                                'Developed Group Insurance Processing from ground up.',
+                                                'Developed Retail Insurance Processing Platform.',
+                                                'Part of organisations innovation charter.'
+                                ]},
+                            {'id': 1, 'title': 'Intern at Lumiq (Feb 2021 - June 2021)',
+                                'description': ['Worked on document processing product powered by data science.',
+                                    'Refactored and documented exiting codebase.',
+                                    'Integrated new apis and built UI for the same.'
+                                ]}
+                        ];
     return(
         <div className="h-full mx-24">
             <div id="about">
@@ -9,6 +23,25 @@ const Body = () => {
                     Hi Everyone, Welcome to my space. I&apos;m a <span className="font-bold">Software Engineer</span> from India, currently working with awesome folks at Lumiq.
                     I have completed my undergrad in <span className="font-bold">Computer Science</span>, from Jaypee Institute Of Information Technology, Noida, in 2021.
                     I am a problem solver by heart and love to find new use cases of existing technologies.
+                </div>
+                <div className="mt-24">
+                    <div className="text-2xl font-bold">Professional Experience</div>
+                    <div className="flex flex-col space-y-8 items-start mt-6">
+                        {checkpoints.map((checkpoint) => (
+                            <div key={checkpoint.id} className="flex items-center">
+                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="flex-grow">  <div className="h-full border-l border-blue-500"></div>
+                              <div className="ml-4">  <h3 className="text-lg font-medium">{checkpoint.title}</h3>
+                                {
+                                    checkpoint.description.map((desc) => (
+                                        <p className="text-gray-700" key={checkpoint.id}>- {desc}</p>
+                                    ))
+                                }
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                 </div>
                 <div className="mt-24">
                     <div className="text-2xl font-bold">Professional Skillset</div>
