@@ -4,7 +4,7 @@ Welcome to my developer portfolio! This project showcases my skills, projects, a
 
 ## Features
 
-- **Responsive Design**: Optimized for various devices.
+- **Responsive Design**: Optimized for various devices and screen sizes.
 - **Projects Showcase**: Detailed information about the projects I have worked on.
 - **Skills Section**: Highlighting my technical skills and expertise.
 
