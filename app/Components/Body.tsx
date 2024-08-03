@@ -17,9 +17,9 @@ const Body = () => {
                                 ]}
                         ];
     return(
-        <div className="h-full mx-24">
+        <div className="h-full w-full max-w-full box-border px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48">
             <div id="about">
-                <div>
+                <div className="text-slate-500">
                     Hi Everyone, Welcome to my space. I&apos;m a <span className="font-bold">Software Engineer</span> from India, currently working with awesome folks at Lumiq.
                     I have completed my undergrad in <span className="font-bold">Computer Science</span>, from Jaypee Institute Of Information Technology, Noida, in 2021.
                     I am a problem solver by heart and love to find new use cases of existing technologies.
