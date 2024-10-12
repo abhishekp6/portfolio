@@ -15,7 +15,11 @@ Welcome to my developer portfolio! This project showcases my skills, projects, a
 
 ## Lighthouse Score
 
-<img src="./public/lighthouse.png" width="720px">
+![Lighthouse Performance](https://img.shields.io/badge/Performance-100-darkgreen)
+![Lighthouse Accessibility](https://img.shields.io/badge/Accessibility-95-brightgreen)
+![Lighthouse Best Practices](https://img.shields.io/badge/Best%20Practices-100-darkgreen)
+![Lighthouse SEO](https://img.shields.io/badge/SEO-91-brightgreen)
+
 
 ## Getting Started
 
