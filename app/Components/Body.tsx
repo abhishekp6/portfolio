@@ -5,7 +5,7 @@ const Body = () => {
   const checkpoints = [
     {
       id: 1,
-      title: "Senior UI Engineer at Nykaa (Oct 2024 - Present)",
+      title: "Software Engineer at Nykaa (Oct 2024 - Present)",
       description: [],
     },
     {
