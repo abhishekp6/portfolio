@@ -124,17 +124,19 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
-  <div className="border-solid border w-full sm:w-[48%] lg:w-[30%] p-4 rounded-md border-neutral-400 flex flex-col h-[30rem]">
+  <div className="border-solid border w-full sm:w-[48%] lg:w-[30%] p-4 rounded-md border-neutral-400 flex flex-col h-[30rem] shadow-md hover:shadow-lg transition-shadow duration-300">
     <Image src={project.image} alt="project" width="500" height="100" className="rounded-md" />
-    <div className="text-lg my-4 flex justify-center items-center font-bold">
+    <div className="text-xl my-4 flex justify-center items-center font-semibold text-gray-800">
       {project.title}
     </div>
-    <div className="mb-6 text-justify mx-2">{project.description}</div>
+    <div className="mb-6 text-justify mx-2 text-gray-600 leading-relaxed">
+      {project.description}
+    </div>
     <div className="flex justify-center mt-auto space-x-4">
       {project.links.map((link, index) => (
         <div
           key={index}
-          className="w-24 h-8 border rounded-md border-neutral-400 flex items-center justify-center text-slate-600 cursor-pointer"
+          className="w-24 h-8 border rounded-md border-neutral-400 flex items-center justify-center text-blue-600 hover:text-blue-800 cursor-pointer transition-colors duration-200"
         >
           <Link href={link.href} target="_blank">
             {link.label}
