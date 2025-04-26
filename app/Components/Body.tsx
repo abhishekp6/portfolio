@@ -1,5 +1,38 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+// Utility hook for fade-in animation
+const useFadeInOnScroll = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return ref;
+};
 
 interface SectionProps {
   id: string;
@@ -7,12 +40,20 @@ interface SectionProps {
   children: React.ReactNode;
 }
 
-const Section: React.FC<SectionProps> = ({ id, title, children }) => (
-  <div id={id} className="mt-24">
-    <div className="text-2xl font-bold">{title}</div>
-    <div className="mt-6">{children}</div>
-  </div>
-);
+const Section: React.FC<SectionProps> = ({ id, title, children }) => {
+  const ref = useFadeInOnScroll();
+
+  return (
+    <div
+      id={id}
+      ref={ref}
+      className="mt-24 opacity-0 translate-y-10 transition-all duration-[1200ms]"
+    >
+      <div className="text-2xl font-bold">{title}</div>
+      <div className="mt-6">{children}</div>
+    </div>
+  );
+};
 
 interface Checkpoint {
   id: number;
@@ -180,9 +221,15 @@ const Body: React.FC = () => {
     },
   ];
 
+  const aboutRef = useFadeInOnScroll();
+
   return (
     <div className="h-full w-full max-w-full box-border px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48">
-      <div id="about" className="text-center sm:text-left">
+      <div
+        id="about"
+        ref={aboutRef}
+        className="text-center sm:text-left opacity-0 translate-y-10 transition-all duration-[1200ms]"
+      >
         <div className="text-slate-500">
           Hi Everyone, Welcome to my space. I&apos;m a{" "}
           <span className="font-bold">Software Engineer</span> from India,
