@@ -66,28 +66,20 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
-  <div className="flex flex-col space-y-6">
-    {checkpoints.map((checkpoint, index) => (
-      <div key={checkpoint.id} className="flex items-start relative">
-        <div className="flex flex-col items-center">
-          <div className="w-4 h-4 bg-blue-500 rounded-full z-10 mb-2"></div>
-          {index < checkpoints.length - 1 && (
-            <div
-              className="w-px bg-blue-500"
-              style={{
-                height: `calc(${checkpoint.description.length} * 1.5rem)`,
-              }}
-            ></div>
-          )}
-        </div>
-        <div className="ml-4">
-          <h3 className="text-lg font-medium">{checkpoint.title}</h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {checkpoints.map((checkpoint) => (
+      <div
+        key={checkpoint.id}
+        className="p-6 border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white"
+      >
+        <h3 className="text-l text-blue-600 mb-2">
+          {checkpoint.title}
+        </h3>
+        <ul className="list-disc list-inside text-gray-600 text-sm space-y-2">
           {checkpoint.description.map((desc, descIndex) => (
-            <p className="text-gray-700" key={descIndex}>
-              - {desc}
-            </p>
+            <li key={descIndex}>{desc}</li>
           ))}
-        </div>
+        </ul>
       </div>
     ))}
   </div>
