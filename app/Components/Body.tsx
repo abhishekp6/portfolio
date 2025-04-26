@@ -49,7 +49,7 @@ const Section: React.FC<SectionProps> = ({ id, title, children }) => {
       ref={ref}
       className="mt-24 opacity-0 translate-y-10 transition-all duration-[1200ms]"
     >
-      <div className="text-2xl font-bold">{title}</div>
+      <div className="text-2xl font-bold text-center">{title}</div>
       <div className="mt-6">{children}</div>
     </div>
   );
@@ -72,7 +72,12 @@ const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
         <div className="flex flex-col items-center">
           <div className="w-4 h-4 bg-blue-500 rounded-full z-10 mb-2"></div>
           {index < checkpoints.length - 1 && (
-            <div className="w-px bg-blue-500" style={{ height: "12rem" }}></div>
+            <div
+              className="w-px bg-blue-500"
+              style={{
+                height: `calc(${checkpoint.description.length} * 1.5rem)`,
+              }}
+            ></div>
           )}
         </div>
         <div className="ml-4">
@@ -93,7 +98,7 @@ interface ImageGridProps {
 }
 
 const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
-  <div className="flex flex-wrap mt-4">
+  <div className="flex flex-wrap justify-center mt-4">
     {images.map((image, index) => (
       <Image
         key={index}
@@ -145,7 +150,10 @@ const Body: React.FC = () => {
     {
       id: 1,
       title: "Software Engineer at Nykaa (Oct 2024 - Present)",
-      description: [],
+      description: [
+        "Part of UI team, building gamification at Nykaa.",
+        "Responsible for revamping and upgrading the current codebase."
+      ],
     },
     {
       id: 2,
@@ -230,7 +238,7 @@ const Body: React.FC = () => {
         ref={aboutRef}
         className="text-center sm:text-left opacity-0 translate-y-10 transition-all duration-[1200ms]"
       >
-        <div className="text-slate-500">
+        <div className="text-slate-500 text-left">
           Hi Everyone, Welcome to my space. I&apos;m a{" "}
           <span className="font-bold">Software Engineer</span> from India,
           currently working with awesome folks at Nykaa. I have completed my
