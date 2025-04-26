@@ -1,8 +1,106 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Body = () => {
-  const checkpoints = [
+interface SectionProps {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}
+
+const Section: React.FC<SectionProps> = ({ id, title, children }) => (
+  <div id={id} className="mt-24">
+    <div className="text-2xl font-bold">{title}</div>
+    <div className="mt-6">{children}</div>
+  </div>
+);
+
+interface Checkpoint {
+  id: number;
+  title: string;
+  description: string[];
+}
+
+interface TimelineProps {
+  checkpoints: Checkpoint[];
+}
+
+const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
+  <div className="flex flex-col space-y-6">
+    {checkpoints.map((checkpoint, index) => (
+      <div key={checkpoint.id} className="flex items-start relative">
+        <div className="flex flex-col items-center">
+          <div className="w-4 h-4 bg-blue-500 rounded-full z-10 mb-2"></div>
+          {index < checkpoints.length - 1 && (
+            <div className="w-px bg-blue-500" style={{ height: "12rem" }}></div>
+          )}
+        </div>
+        <div className="ml-4">
+          <h3 className="text-lg font-medium">{checkpoint.title}</h3>
+          {checkpoint.description.map((desc, descIndex) => (
+            <p className="text-gray-700" key={descIndex}>
+              - {desc}
+            </p>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+interface ImageGridProps {
+  images: { src: string; alt: string }[];
+}
+
+const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
+  <div className="flex flex-wrap mt-4">
+    {images.map((image, index) => (
+      <Image
+        key={index}
+        src={image.src}
+        alt={image.alt}
+        width="100"
+        height="100"
+        className="m-2"
+      />
+    ))}
+  </div>
+);
+
+interface Project {
+  image: string;
+  title: string;
+  description: string;
+  links: { href: string; label: string }[];
+}
+
+interface ProjectCardProps {
+  project: Project;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
+  <div className="border-solid border w-full sm:w-[48%] lg:w-[30%] p-4 rounded-md border-neutral-400 flex flex-col h-[30rem]">
+    <Image src={project.image} alt="project" width="500" height="100" className="rounded-md" />
+    <div className="text-lg my-4 flex justify-center items-center font-bold">
+      {project.title}
+    </div>
+    <div className="mb-6 text-justify mx-2">{project.description}</div>
+    <div className="flex justify-center mt-auto space-x-4">
+      {project.links.map((link, index) => (
+        <div
+          key={index}
+          className="w-24 h-8 border rounded-md border-neutral-400 flex items-center justify-center text-slate-600 cursor-pointer"
+        >
+          <Link href={link.href} target="_blank">
+            {link.label}
+          </Link>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const Body: React.FC = () => {
+  const checkpoints: Checkpoint[] = [
     {
       id: 1,
       title: "Software Engineer at Nykaa (Oct 2024 - Present)",
@@ -28,9 +126,63 @@ const Body = () => {
       ],
     },
   ];
+
+  const skills: { src: string; alt: string }[] = [
+    { src: "/js.svg", alt: "JavaScript" },
+    { src: "/ts.svg", alt: "TypeScript" },
+    { src: "/cpp.svg", alt: "C++" },
+    { src: "/react.svg", alt: "React" },
+    { src: "/angular.svg", alt: "Angular" },
+    { src: "/node.svg", alt: "Node.js" },
+    { src: "/mongo.svg", alt: "MongoDB" },
+    { src: "/redis.svg", alt: "Redis" },
+    { src: "/kafka.svg", alt: "Kafka" },
+    { src: "/docker.svg", alt: "Docker" },
+    { src: "/git.svg", alt: "Git" },
+    { src: "/aws.svg", alt: "AWS" },
+  ];
+
+  const certifications: { src: string; alt: string }[] = [
+    { src: "/da.png", alt: "Data Analysis" },
+    { src: "/cp.png", alt: "Competitive Programming" },
+    { src: "/ta.png", alt: "Technical Analysis" },
+    { src: "/ace.png", alt: "ACE Certification" },
+  ];
+
+  const projects: Project[] = [
+    {
+      image: "/learnest.png",
+      title: "Learnest",
+      description:
+        "Learnest is a web application designed for individual course creators. It enables you to create, manage, and display video tutorials to your viewers.",
+      links: [
+        { href: "https://github.com/abhishekp6/learnest", label: "Github" },
+        { href: "https://learnest-fe.vercel.app", label: "Live" },
+      ],
+    },
+    {
+      image: "/yb.png",
+      title: "Youtube Browser",
+      description:
+        "It is a simple youtube wrapper, which fetches data from Google's youtube data API based on search term and plays in an iframe. The application is solely created with React and Semantic UI.",
+      links: [
+        { href: "https://github.com/abhishekp6/youtube-browser", label: "Github" },
+      ],
+    },
+    {
+      image: "/live-editor.png",
+      title: "Live Editor",
+      description:
+        "It's live code editor with real-time output for HTML, CSS, and JavaScript, served by an Express server.",
+      links: [
+        { href: "https://github.com/abhishekp6/live-js-editor", label: "Github" },
+      ],
+    },
+  ];
+
   return (
     <div className="h-full w-full max-w-full box-border px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48">
-      <div id="about">
+      <div id="about" className="text-center sm:text-left">
         <div className="text-slate-500">
           Hi Everyone, Welcome to my space. I&apos;m a{" "}
           <span className="font-bold">Software Engineer</span> from India,
@@ -40,273 +192,23 @@ const Body = () => {
           problem solver by heart and love to find new use cases of existing
           technologies.
         </div>
-        <div className="mt-24">
-          <div className="text-2xl font-bold">Professional Experience</div>
-          <div className="flex flex-col space-y-1 items-start mt-6">
-            {checkpoints.map((checkpoint, index) => (
-              <div key={checkpoint.id} className="flex items-start relative">
-                {/* Container for the dot and line */}
-                <div className="flex flex-col items-center">
-                  {/* Blue Dot */}
-                  <div className="w-4 h-4 bg-blue-500 rounded-full z-10 mb-2"></div>
-                  {/* Line: Show for all except the last checkpoint */}
-                  {index < checkpoints.length - 1 && (
-                    <div
-                      className="w-px bg-blue-500"
-                      style={{ height: "12rem" }}
-                    ></div> // Adjust height as necessary
-                  )}
-                </div>
-                {/* Checkpoint Content */}
-                <div className="ml-4">
-                  <h3 className="text-lg font-medium">{checkpoint.title}</h3>
-                  {checkpoint.description.map((desc, descIndex) => (
-                    <p className="text-gray-700" key={descIndex}>
-                      - {desc}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mt-24">
-          <div className="text-2xl font-bold">Professional Skillset</div>
-          <div className="flex flex-wrap mt-4">
-            <Image
-              src="/js.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/ts.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/cpp.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/react.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/angular.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/node.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/mongo.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/redis.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/kafka.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/docker.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/git.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/aws.svg"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-          </div>
-        </div>
-        <div className="mt-24">
-          <div className="text-2xl font-bold">Certifications</div>
-          <div className="flex flex-wrap mt-4">
-            <Image
-              src="/da.png"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/cp.png"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/ta.png"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-            <Image
-              src="/ace.png"
-              alt="react"
-              width="100"
-              height="100"
-              className="m-2"
-            />
-          </div>
-        </div>
       </div>
-      <div id="projects" className="mt-24">
-        <div className="text-2xl font-bold">Projects</div>
-        <div className="flex flex-wrap space-x-2 space-y-2">
-          <div></div>
-          <div className="border-solid border w-full sm:w-auto p-1 rounded-md border-neutral-400 flex-1 flex flex-col h-[30rem]">
-            <Image
-              src="/learnest.png"
-              alt="project"
-              width="500"
-              height="100"
-            ></Image>
-            <div className="text-lg my-6 flex justify-center items-center font-bold">
-              Learnest
-            </div>
-            <div className="mb-10 text-justify mx-2">
-              Learnest is a web application designed for individual course
-              creators. It enables you to create, manage, and display video
-              tutorials to your viewers.
-            </div>
-            <div className="flex mt-auto">
-              <div className="w-24 h-8 mx-2 border rounded-md border-neutral-400 flex items-center justify-center text-slate-600 cursor-pointer">
-                <Link
-                  href="https://github.com/abhishekp6/learnest"
-                  target="_blank"
-                >
-                  Github
-                </Link>
-                <span className="ml-2">
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                  </svg>
-                </span>
-              </div>
-              <div className="w-24 h-8 mx-2 border rounded-md border-neutral-400 flex items-center justify-center text-slate-600 cursor-pointer">
-                <Link href="https://learnest-fe.vercel.app" target="_blank">
-                  Live
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="border-solid border rounded-md border-neutral-400 w-full sm:w-auto p-1 rounded-md flex-1 flex flex-col h-[30rem]">
-            <Image src="/yb.png" alt="project" width="500" height="100"></Image>
-            <div className="text-lg my-6 flex justify-center items-center font-bold">
-              Youtube Browser
-            </div>
-            <div className="text-justify mx-2">
-              It is a simple youtube wrapper, which fetches data from
-              Google&apos;s youtube data API based on search term and plays in
-              an iframe. The application is solely created with React and
-              Semantic UI.
-            </div>
-            <div className="flex mt-auto">
-              <div className="w-24 h-8 mx-2 border rounded-md border-neutral-400 flex items-center justify-center text-slate-600 cursor-pointer">
-                <Link
-                  href="https://github.com/abhishekp6/youtube-browser"
-                  target="_blank"
-                >
-                  Github
-                </Link>
-                <span className="ml-2">
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="border-solid border rounded-md border-neutral-400 w-full sm:w-auto p-1 rounded-md flex-1 flex flex-col h-[30rem]">
-            <Image
-              src="/live-editor.png"
-              alt="project"
-              width="500"
-              height="100"
-            ></Image>
-            <div className="text-lg my-6 flex justify-center items-center font-bold">
-              Live Editor
-            </div>
-            <div className="text-justify mx-2">
-              It&apos;s live code editor with real-time output for HTML, CSS,
-              and JavaScript, served by an Express server.
-            </div>
-            <div className="flex mt-auto">
-              <div className="w-24 h-8 mx-2 border rounded-md border-neutral-400 flex items-center justify-center text-slate-600 cursor-pointer">
-                <Link
-                  href="https://github.com/abhishekp6/live-js-editor"
-                  target="_blank"
-                >
-                  Github
-                </Link>
-                <span className="ml-2">
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
+      <Section id="experience" title="Professional Experience">
+        <Timeline checkpoints={checkpoints} />
+      </Section>
+      <Section id="skills" title="Professional Skillset">
+        <ImageGrid images={skills} />
+      </Section>
+      <Section id="certifications" title="Certifications">
+        <ImageGrid images={certifications} />
+      </Section>
+      <Section id="projects" title="Projects">
+        <div className="flex flex-wrap justify-center sm:justify-between gap-6">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
         </div>
-      </div>
+      </Section>
     </div>
   );
 };
