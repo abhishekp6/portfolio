@@ -19,7 +19,7 @@ const Section: React.FC<SectionProps> = ({ id, title, children }) => {
 const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {checkpoints.map((checkpoint) => (
-      <div key={checkpoint.id} className="p-6 border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
+      <div key={checkpoint.id} className="p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 bg-white border border-slate-100">
         <h3 className="text-l text-slate-900 mb-2">{checkpoint.title}</h3>
         <ul className="list-disc list-inside text-gray-600 text-sm space-y-2">
           {checkpoint.description.map((desc, index) => (
@@ -34,14 +34,21 @@ const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
 const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
   <div className="flex flex-wrap justify-center mt-4">
     {images.map((image, index) => (
-      <Image key={index} src={image.src} alt={image.alt} width="100" height="100" className="m-2" />
+      <Image 
+        key={index} 
+        src={image.src} 
+        alt={image.alt} 
+        width="100" 
+        height="100" 
+        className="m-2 transform transition-all duration-300 hover:scale-110 hover:rotate-2 cursor-pointer" 
+      />
     ))}
   </div>
 );
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
-  <div className="border-solid border w-full sm:w-[48%] lg:w-[30%] p-4 rounded-md border-slate-600 flex flex-col h-[30rem] shadow-md hover:shadow-lg transition-shadow duration-300">
-    <Image src={project.image} alt={project.title} width="500" height="100" className="rounded-md" />
+  <div className="border border-slate-100 w-full sm:w-[48%] lg:w-[30%] p-4 rounded-xl flex flex-col h-[30rem] shadow-sm hover:shadow-md transition-all duration-300 bg-white hover:scale-[1.02] hover:-translate-y-1">
+    <Image src={project.image} alt={project.title} width="500" height="100" className="rounded-xl transform transition-all duration-500 hover:scale-105" />
     <div className="text-2xl my-4 flex justify-center items-center font-semibold text-slate-800">
       {project.title}
     </div>
@@ -50,7 +57,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
     </div>
     <div className="flex justify-center mt-auto space-x-4">
       {project.links.map((link, index) => (
-        <div key={index} className="w-24 h-8 border rounded-md border-slate-600 flex items-center justify-center text-slate-900 hover:text-slate-700 cursor-pointer transition-colors duration-200">
+        <div key={index} className="w-24 h-8 border border-slate-200 rounded-lg flex items-center justify-center text-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-800 cursor-pointer transition-all duration-200">
           <Link href={link.href} target="_blank">{link.label}</Link>
         </div>
       ))}
