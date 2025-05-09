@@ -1,13 +1,17 @@
 import Link from "next/link";
+import { NAV_ITEMS } from "../constants";
 
 const Navbar = () => {
     return(
         <div className="h-16 px-4 bg-slate-50 flex items-center justify-center text-base text-slate-800 sticky top-0 z-10">
             <div className="flex space-x-6 items-center">
-                <div className="cursor-pointer"><Link href="#header">Home</Link></div>
-                <div className="cursor-pointer"><Link href="#about">About</Link></div>
-                <div className="cursor-pointer"><Link href="#projects">Projects</Link></div>
-                <div className="cursor-pointer"><Link href="https://medium.com/@abhishekp6" target="_blank">Blogs</Link></div>
+                {NAV_ITEMS.map((item, index) => (
+                    <div key={index} className="cursor-pointer">
+                        <Link href={item.href} target={item.external ? "_blank" : undefined}>
+                            {item.label}
+                        </Link>
+                    </div>
+                ))}
                 <div className="cursor-pointer flex items-center text-black">
                     <Link href="https://github.com/abhishekp6" target="_blank" className="flex items-center">
                         <svg viewBox="0 0 16 16" className="w-5 h-5" fill="currentColor" aria-hidden="true">
