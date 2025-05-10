@@ -10,7 +10,7 @@ const Section: React.FC<SectionProps> = ({ id, title, children }) => {
   const ref = useFadeInOnScroll();
   return (
     <div id={id} ref={ref} className="mt-24 opacity-0 translate-y-10 transition-all duration-[1200ms]">
-      <div className="text-2xl font-bold text-center text-slate-800">{title}</div>
+      <div className="text-2xl font-bold text-center text-slate-800 dark:text-slate-200">{title}</div>
       <div className="mt-6">{children}</div>
     </div>
   );
@@ -19,9 +19,9 @@ const Section: React.FC<SectionProps> = ({ id, title, children }) => {
 const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {checkpoints.map((checkpoint) => (
-      <div key={checkpoint.id} className="p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 bg-white border border-slate-100">
-        <h3 className="text-l text-slate-900 mb-2">{checkpoint.title}</h3>
-        <ul className="list-disc list-inside text-gray-600 text-sm space-y-2">
+      <div key={checkpoint.id} className="p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+        <h3 className="text-l text-slate-900 dark:text-slate-100 mb-2">{checkpoint.title}</h3>
+        <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm space-y-2">
           {checkpoint.description.map((desc, index) => (
             <li key={index}>{desc}</li>
           ))}
@@ -32,7 +32,7 @@ const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
 );
 
 const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
-  <div className="flex flex-wrap justify-center mt-4">
+  <div className="image-container">
     {images.map((image, index) => (
       <Image 
         key={index} 
@@ -40,24 +40,28 @@ const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
         alt={image.alt} 
         width="100" 
         height="100" 
-        className="m-2 transform transition-all duration-300 hover:scale-110 hover:rotate-2 cursor-pointer" 
+        className={`hover-scale hover-rotate cursor-pointer ${
+          image.darkMode?.invert ? "dark:invert" : ""
+        } ${
+          image.darkMode?.brightness ? `dark:brightness-[${image.darkMode.brightness}%]` : ""
+        }`}
       />
     ))}
   </div>
 );
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
-  <div className="border border-slate-100 w-full sm:w-[48%] lg:w-[30%] p-3 sm:p-4 rounded-xl flex flex-col h-[24rem] sm:h-[30rem] shadow-sm hover:shadow-md transition-all duration-300 bg-white hover:scale-[1.02] hover:-translate-y-1">
-    <Image src={project.image} alt={project.title} width="500" height="100" className="rounded-xl transform transition-all duration-500 hover:scale-105" />
-    <div className="text-xl sm:text-2xl my-2 sm:my-4 flex justify-center items-center font-semibold text-slate-800">
+  <div className="card-base w-full sm:w-[48%] lg:w-[30%] p-4 flex flex-col h-[24rem] sm:h-[30rem] hover:scale-[1.02] hover:-translate-y-1">
+    <Image src={project.image} alt={project.title} width="500" height="100" className="rounded-xl hover-scale" />
+    <div className="text-xl sm:text-2xl my-4 text-center font-semibold text-slate-800 dark:text-slate-200">
       {project.title}
     </div>
-    <div className="mb-4 sm:mb-6 text-justify mx-2 text-slate-600 text-sm sm:text-base leading-relaxed">
+    <div className="mb-6 text-justify text-slate-600 dark:text-slate-300 text-sm sm:text-base">
       {project.description}
     </div>
     <div className="flex justify-center mt-auto space-x-4">
       {project.links.map((link, index) => (
-        <div key={index} className="w-20 sm:w-24 h-7 sm:h-8 border border-slate-200 rounded-lg flex items-center justify-center text-sm sm:text-base text-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-800 cursor-pointer transition-all duration-200">
+        <div key={index} className="w-20 sm:w-24 h-7 sm:h-8 link-button">
           <Link href={link.href} target="_blank">{link.label}</Link>
         </div>
       ))}
@@ -71,7 +75,7 @@ const Body: React.FC = () => {
   return (
     <div className="h-full w-full max-w-full box-border px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48">
       <div id="about" ref={aboutRef} className="text-center sm:text-left opacity-0 translate-y-10 transition-all duration-[1200ms]">
-        <div className="text-slate-500 text-left">{ABOUT_TEXT}</div>
+        <div className="text-slate-500 dark:text-slate-400">{ABOUT_TEXT}</div>
       </div>
       <Section id="experience" title="Professional Experience">
         <Timeline checkpoints={PROFESSIONAL_EXPERIENCE} />

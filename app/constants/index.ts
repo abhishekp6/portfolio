@@ -36,12 +36,12 @@ export const SKILLS: ImageItem[] = [
   { src: "/cpp.svg", alt: "C++" },
   { src: "/react.svg", alt: "React" },
   { src: "/angular.svg", alt: "Angular" },
-  { src: "/node.svg", alt: "Node.js" },
-  { src: "/mongo.svg", alt: "MongoDB" },
+  { src: "/node.svg", alt: "Node.js", darkMode: { brightness: 200 } },
+  { src: "/mongo.svg", alt: "MongoDB", darkMode: { brightness: 200 } },
   { src: "/redis.svg", alt: "Redis" },
   { src: "/kafka.svg", alt: "Kafka" },
   { src: "/docker.svg", alt: "Docker" },
-  { src: "/git.svg", alt: "Git" },
+  { src: "/git.svg", alt: "Git", darkMode: { invert: true, brightness: 200 } },
   { src: "/aws.svg", alt: "AWS" },
 ];
 
