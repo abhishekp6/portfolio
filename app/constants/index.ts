@@ -46,10 +46,10 @@ export const SKILLS: ImageItem[] = [
 ];
 
 export const CERTIFICATIONS: ImageItem[] = [
-  { src: "/da.png", alt: "Data Analysis" },
-  { src: "/cp.png", alt: "Competitive Programming" },
-  { src: "/ta.png", alt: "Technical Analysis" },
-  { src: "/ace.png", alt: "ACE Certification" },
+  { src: "/da.png", alt: "Developer Associate" },
+  { src: "/cp.png", alt: "Cloud Practitioner" },
+  { src: "/ta.png", alt: "Technical Accredation" },
+  { src: "/ace.png", alt: "Google Associate Cloud Engineer" },
 ];
 
 export const PROJECTS: Project[] = [
