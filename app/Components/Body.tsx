@@ -47,17 +47,17 @@ const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
 );
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
-  <div className="border border-slate-100 w-full sm:w-[48%] lg:w-[30%] p-4 rounded-xl flex flex-col h-[30rem] shadow-sm hover:shadow-md transition-all duration-300 bg-white hover:scale-[1.02] hover:-translate-y-1">
+  <div className="border border-slate-100 w-full sm:w-[48%] lg:w-[30%] p-3 sm:p-4 rounded-xl flex flex-col h-[24rem] sm:h-[30rem] shadow-sm hover:shadow-md transition-all duration-300 bg-white hover:scale-[1.02] hover:-translate-y-1">
     <Image src={project.image} alt={project.title} width="500" height="100" className="rounded-xl transform transition-all duration-500 hover:scale-105" />
-    <div className="text-2xl my-4 flex justify-center items-center font-semibold text-slate-800">
+    <div className="text-xl sm:text-2xl my-2 sm:my-4 flex justify-center items-center font-semibold text-slate-800">
       {project.title}
     </div>
-    <div className="mb-6 text-justify mx-2 text-slate-600 text-base leading-relaxed">
+    <div className="mb-4 sm:mb-6 text-justify mx-2 text-slate-600 text-sm sm:text-base leading-relaxed">
       {project.description}
     </div>
     <div className="flex justify-center mt-auto space-x-4">
       {project.links.map((link, index) => (
-        <div key={index} className="w-24 h-8 border border-slate-200 rounded-lg flex items-center justify-center text-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-800 cursor-pointer transition-all duration-200">
+        <div key={index} className="w-20 sm:w-24 h-7 sm:h-8 border border-slate-200 rounded-lg flex items-center justify-center text-sm sm:text-base text-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-800 cursor-pointer transition-all duration-200">
           <Link href={link.href} target="_blank">{link.label}</Link>
         </div>
       ))}
@@ -76,18 +76,18 @@ const Body: React.FC = () => {
       <Section id="experience" title="Professional Experience">
         <Timeline checkpoints={PROFESSIONAL_EXPERIENCE} />
       </Section>
-      <Section id="skills" title="Professional Skillset">
-        <ImageGrid images={SKILLS} />
-      </Section>
-      <Section id="certifications" title="Certifications">
-        <ImageGrid images={CERTIFICATIONS} />
-      </Section>
       <Section id="projects" title="Projects">
         <div className="flex flex-wrap justify-center sm:justify-between gap-6">
           {PROJECTS.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
         </div>
+      </Section>
+      <Section id="skills" title="Professional Skillset">
+        <ImageGrid images={SKILLS} />
+      </Section>
+      <Section id="certifications" title="Certifications">
+        <ImageGrid images={CERTIFICATIONS} />
       </Section>
     </div>
   );
