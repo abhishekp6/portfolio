@@ -3,7 +3,9 @@ import { Checkpoint, ImageItem, Project } from "../types";
 export const PROFESSIONAL_EXPERIENCE: Checkpoint[] = [
   {
     id: 1,
-    title: "Software Engineer at Nykaa (Oct 2024 - Present)",
+    company: "Nykaa",
+    role: "Software Engineer",
+    dateRange: "Oct 2024 - Present",
     description: [
       "Part of UI team, building gamification at Nykaa.",
       "Responsible for revamping and upgrading the current codebase."
@@ -11,7 +13,9 @@ export const PROFESSIONAL_EXPERIENCE: Checkpoint[] = [
   },
   {
     id: 2,
-    title: "Software Engineer at Lumiq (July 2021 - Sept 2024)",
+    company: "Lumiq",
+    role: "Software Engineer",
+    dateRange: "July 2021 - Sept 2024",
     description: [
       "Part of applications team responsible for building full stack applications end to end.",
       "Developed Group Insurance Processing from ground up.",
@@ -21,7 +25,9 @@ export const PROFESSIONAL_EXPERIENCE: Checkpoint[] = [
   },
   {
     id: 3,
-    title: "Intern at Lumiq (Feb 2021 - June 2021)",
+    company: "Lumiq",
+    role: "Intern",
+    dateRange: "Feb 2021 - June 2021",
     description: [
       "Worked on document processing product powered by data science.",
       "Refactored and documented exiting codebase.",

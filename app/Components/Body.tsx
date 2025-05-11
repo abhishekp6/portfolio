@@ -20,7 +20,19 @@ const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {checkpoints.map((checkpoint) => (
       <div key={checkpoint.id} className="p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
-        <h3 className="text-l text-slate-900 dark:text-slate-100 mb-2">{checkpoint.title}</h3>
+        <div className="mb-4">
+          <div className="flex flex-col space-y-1">
+            <span className="text-base font-semibold text-slate-900 dark:text-slate-100">
+              {checkpoint.company}
+            </span>
+            <span className="text-sm text-slate-600 dark:text-slate-300">
+              {checkpoint.role}
+            </span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              {checkpoint.dateRange}
+            </span>
+          </div>
+        </div>
         <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 text-sm space-y-2">
           {checkpoint.description.map((desc, index) => (
             <li key={index}>{desc}</li>
@@ -32,7 +44,7 @@ const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
 );
 
 const ImageGrid: React.FC<ImageGridProps> = ({ images }) => (
-  <div className="image-container">
+  <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
     {images.map((image, index) => (
       <Image 
         key={index} 
