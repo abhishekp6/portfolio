@@ -7,12 +7,25 @@ import { useTheme } from "../providers/ThemeProvider";
 const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
 
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const element = document.querySelector(href);
+            element?.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return(
         <div className="h-16 px-4 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-sm flex items-center justify-center text-base text-slate-800 dark:text-slate-200 sticky top-0 z-10 shadow-sm">
             <div className="flex space-x-6 items-center">
                 {NAV_ITEMS.map((item, index) => (
                     <div key={index} className="cursor-pointer group">
-                        <Link href={item.href} target={item.external ? "_blank" : undefined} className="relative">
+                        <Link 
+                            href={item.href} 
+                            target={item.external ? "_blank" : undefined} 
+                            className="relative"
+                            onClick={(e) => !item.external && handleClick(e, item.href)}
+                        >
                             {item.label}
                             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-slate-800 transition-all duration-300 group-hover:w-full"></span>
                         </Link>
