@@ -4,6 +4,7 @@ export const PROFESSIONAL_EXPERIENCE: Checkpoint[] = [
   {
     id: 1,
     company: "Nykaa",
+    companyUrl: "https://www.nykaa.com",
     role: "Software Engineer",
     dateRange: "Oct 2024 - Present",
     description: [
@@ -14,6 +15,7 @@ export const PROFESSIONAL_EXPERIENCE: Checkpoint[] = [
   {
     id: 2,
     company: "Lumiq",
+    companyUrl: "https://www.lumiq.ai",
     role: "Software Engineer",
     dateRange: "July 2021 - Sept 2024",
     description: [
@@ -26,6 +28,7 @@ export const PROFESSIONAL_EXPERIENCE: Checkpoint[] = [
   {
     id: 3,
     company: "Lumiq",
+    companyUrl: "https://www.lumiq.ai",
     role: "Intern",
     dateRange: "Feb 2021 - June 2021",
     description: [

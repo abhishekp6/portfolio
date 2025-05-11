@@ -15,6 +15,7 @@ export interface SectionProps extends StyleConfig {
 export interface Checkpoint {
   id: number;
   company: string;
+  companyUrl?: string;  // Optional URL for company
   role: string;
   dateRange: string;
   description: string[];
