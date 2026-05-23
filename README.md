@@ -1,34 +1,21 @@
-# Developer Portfolio
+# Portfolio
 
-A clean and responsive developer portfolio built with **Next.js** and **Tailwind CSS** to showcase my projects, skills, and experience as a Full-Stack Developer.
+Personal portfolio built with Next.js 14, TypeScript, and Tailwind CSS. Scores 100 across Performance, SEO, and Best Practices on Lighthouse.
 
-## 🚀 Features
+## Stack
 
-- **Responsive Design** ✅
-- **Dark Mode** ✅
-- **Project Highlights** ✅
-- **Skills Overview** ✅ 
-- **Optimized Performance** ✅  
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
 
-## 🛠 Tech Stack
-
-- [Next.js](https://nextjs.org/)  
-- [Tailwind CSS](https://tailwindcss.com/)
-
-## 📊 Lighthouse Scores
+## Lighthouse
 
 ![Performance](https://img.shields.io/badge/Performance-100-darkgreen)
 ![Accessibility](https://img.shields.io/badge/Accessibility-96-brightgreen)
 ![Best Practices](https://img.shields.io/badge/Best%20Practices-100-darkgreen)
 ![SEO](https://img.shields.io/badge/SEO-100-darkgreen)
 
-## ⚙️ Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v16+)
-
-### Installation
+## Getting Started
 
 ```bash
 git clone https://github.com/abhishekp6/portfolio.git
@@ -37,7 +24,11 @@ npm install
 npm run dev
 ```
 
-## ⭐ Support This Project
+## Commands
 
-If you find this project useful or inspiring, please consider giving it a **star** on GitHub! It helps others discover it and keeps me motivated to maintain and improve it.
-
+```bash
+npm run dev    # development server
+npm run build  # production build
+npm run start  # production server
+npm run lint   # lint
+```

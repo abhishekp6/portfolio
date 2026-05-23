@@ -62,10 +62,10 @@ const Header = () => {
       <div className="container">
         <div className="hero hero-grid">
           <div>
-            <div className="status-chip">
+            {/* <div className="status-chip">
               <span className="status-dot" />
               <span>Open to new opportunities</span>
-            </div>
+            </div> */}
 
             <h1>Full-stack engineer, building for the web.</h1>
 
