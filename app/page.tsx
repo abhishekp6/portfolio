@@ -5,11 +5,13 @@ import Footer from "./Components/Footer";
 
 export default function Home() {
   return (
-    <div className="h-full">
+    <>
       <Navbar />
-      <Header />
-      <Body />
+      <main>
+        <Header />
+        <Body />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

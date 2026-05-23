@@ -14,7 +14,7 @@ const TitleSection = ({ checkpoint }: { checkpoint: Checkpoint }) => (
 export const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {checkpoints.map((checkpoint) => (
-      <div key={checkpoint.id} className="p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+      <div key={`${checkpoint.company}-${checkpoint.role}`} className="p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
         <div className="mb-4">
           {checkpoint.companyUrl ? (
             <Link href={checkpoint.companyUrl} target="_blank">
@@ -31,6 +31,15 @@ export const Timeline: React.FC<TimelineProps> = ({ checkpoints }) => (
             <li key={index}>{desc}</li>
           ))}
         </ul>
+        {checkpoint.techStack && (
+          <div className="flex flex-wrap gap-1.5 mt-4">
+            {checkpoint.techStack.map((tech) => (
+              <span key={tech} className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     ))}
   </div>
