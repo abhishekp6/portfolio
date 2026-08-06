@@ -126,7 +126,7 @@ export const AI_TOOLS: AiTool[] = [
   { name: "Codex", active: false },
 ];
 
-export const AI_TOKEN_USAGE = "~100K tokens / day";
+export const AI_TOKEN_USAGE = "~1.5M tokens / day";
 
 /* ── Writing ─────────────────────────────────────────────── */
 export const ARTICLES: Article[] = [
